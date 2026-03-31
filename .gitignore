@@ -1,0 +1,7 @@
+node_modules
+.next
+next-env.d.ts
+public/models/**/*.blend
+public/models/**/*.fbx
+public/models/**/*.obj
+public/models/**/*.mtl
