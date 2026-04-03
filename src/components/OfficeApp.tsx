@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { LoadingScreen } from "./LoadingScreen";
 import { LeftSidebar, type AppView } from "./ui/LeftSidebar";
@@ -11,23 +11,18 @@ import { RelatoriosView } from "./views/RelatoriosView";
 
 const OfficeCanvas = dynamic(
   () => import("./office/Scene").then((m) => m.OfficeCanvas),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 export function OfficeApp() {
-  const [loaded, setLoaded] = useState(false);
   const [activeView, setActiveView] = useState<AppView>("escritorio");
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 2500);
-    return () => clearTimeout(timer);
-  }, []);
 
   const showOverlay = activeView !== "escritorio";
 
   return (
     <div className="h-screen flex bg-[#F4F4F0] overflow-hidden">
-      {!loaded && <LoadingScreen />}
+      {/* Loading screen com progresso real dos assets 3D */}
+      <LoadingScreen />
 
       <LeftSidebar activeView={activeView} onViewChange={setActiveView} />
 

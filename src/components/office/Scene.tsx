@@ -82,7 +82,7 @@ const AGENT_CHARS: Record<AgentRole, {
   ceo:       { appearance: "/characters/char17.glb", animPath: "/animations/char17" },
   ads:       { appearance: "/characters/char18.glb", animPath: "/animations/char18" },
   comercial: { appearance: "/characters/char10.glb", animPath: "/animations/char10" },
-  imagen:     { appearance: "/characters/char15.glb", animPath: "/animations/char15" },
+  calls:     { appearance: "/characters/char15.glb", animPath: "/animations/char15" },
 };
 
 const STATUS_COLORS: Record<AgentStatus, string> = {
@@ -94,14 +94,14 @@ const DESK_FACING: Record<AgentRole, number> = {
   ceo: 2.82,
   ads: -2.91,
   comercial: 2.90,
-  imagen: 2.82,
+  calls: 2.82,
 };
 
 const MEETING_FACING: Record<AgentRole, number> = {
   ceo: -1.74,
   ads: -3.00,
   comercial: 0.66,
-  imagen: -0.14,
+  calls: -0.14,
 };
 
 const ENTRY: [number, number, number] = [-2.74, 0, -0.5];
@@ -353,14 +353,14 @@ function OfficeScene() {
   const agentIds = Object.keys(AGENTS) as AgentRole[];
   return (
     <>
-      <ambientLight intensity={1.5} />
-      <directionalLight position={[10, 15, 10]} intensity={2.0} color="#fff8f0" castShadow
-        shadow-mapSize-width={2048} shadow-mapSize-height={2048}
-        shadow-camera-left={-12} shadow-camera-right={12}
-        shadow-camera-top={12} shadow-camera-bottom={-12}
-        shadow-bias={-0.0003} />
-      <directionalLight position={[-8, 10, -6]} intensity={0.7} color="#e0e8ff" />
-      <hemisphereLight args={["#c8e0ff", "#ffe8d0", 0.6]} />
+      {/* Iluminação otimizada — menos luzes, sem shadow map pesado */}
+      <ambientLight intensity={1.8} />
+      <directionalLight position={[10, 15, 10]} intensity={1.8} color="#fff8f0" castShadow
+        shadow-mapSize-width={1024} shadow-mapSize-height={1024}
+        shadow-camera-left={-10} shadow-camera-right={10}
+        shadow-camera-top={10} shadow-camera-bottom={-10}
+        shadow-bias={-0.0005} />
+      <directionalLight position={[-8, 10, -6]} intensity={0.5} color="#e0e8ff" />
 
       <Suspense fallback={null}>
         <OfficeModel />
@@ -369,14 +369,13 @@ function OfficeScene() {
         ))}
       </Suspense>
 
-      {/* Editor 3D overlays (waypoints, highlights) */}
       <EditorOverlays />
 
       <OrbitControls
         makeDefault target={[-5, 1, 4]}
         minDistance={3} maxDistance={35}
         zoomSpeed={0.4}
-        enableDamping dampingFactor={0.08} rotateSpeed={0.5}
+        enableDamping dampingFactor={0.06} rotateSpeed={0.5}
         enablePan mouseButtons={{ LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.PAN, RIGHT: THREE.MOUSE.ROTATE }}
       />
     </>
@@ -385,9 +384,19 @@ function OfficeScene() {
 
 export function OfficeCanvas() {
   return (
-    <Canvas shadows
+    <Canvas
       camera={{ position: [6, 8, 14], fov: 45, near: 0.1, far: 200 }}
-      gl={{ antialias: true, toneMapping: 4, toneMappingExposure: 1.3 }}
+      gl={{
+        antialias: true,
+        toneMapping: 4,
+        toneMappingExposure: 1.3,
+        powerPreference: "high-performance",
+        stencil: false,
+        depth: true,
+      }}
+      shadows="soft"
+      dpr={[1, 1.5]}
+      performance={{ min: 0.5 }}
       style={{ background: "#e2e6ea" }}>
       <OfficeScene />
     </Canvas>
