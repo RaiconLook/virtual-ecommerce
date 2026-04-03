@@ -4,11 +4,10 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { LoadingScreen } from "./LoadingScreen";
 import { LeftSidebar, type AppView } from "./ui/LeftSidebar";
-import { Sidebar } from "./ui/Sidebar";
-import { KanbanView } from "./views/KanbanView";
-import { AgentesView } from "./views/AgentesView";
-import { SkillsView } from "./views/SkillsView";
-import { TarefasView } from "./views/TarefasView";
+import { PainelView } from "./views/PainelView";
+import { AnunciosView } from "./views/AnunciosView";
+import { CampanhasView } from "./views/CampanhasView";
+import { RelatoriosView } from "./views/RelatoriosView";
 
 const OfficeCanvas = dynamic(
   () => import("./office/Scene").then((m) => m.OfficeCanvas),
@@ -17,14 +16,14 @@ const OfficeCanvas = dynamic(
 
 export function OfficeApp() {
   const [loaded, setLoaded] = useState(false);
-  const [activeView, setActiveView] = useState<AppView>("dashboard");
+  const [activeView, setActiveView] = useState<AppView>("escritorio");
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 2500);
     return () => clearTimeout(timer);
   }, []);
 
-  const isFullPage = activeView === "kanban" || activeView === "agentes" || activeView === "skills" || activeView === "tarefas";
+  const showOverlay = activeView !== "escritorio";
 
   return (
     <div className="h-screen flex bg-[#F4F4F0] overflow-hidden">
@@ -32,22 +31,21 @@ export function OfficeApp() {
 
       <LeftSidebar activeView={activeView} onViewChange={setActiveView} />
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* 3D Canvas - always visible except full-page views */}
-        {!isFullPage && (
-          <div className="flex-1 relative">
-            <OfficeCanvas />
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* 3D Canvas — SEMPRE montado, nunca desmonta */}
+        <div className="absolute inset-0">
+          <OfficeCanvas />
+        </div>
+
+        {/* Overlay das views — fica por cima do 3D */}
+        {showOverlay && (
+          <div className="absolute inset-0 z-10 bg-[#F4F4F0]/95 backdrop-blur-sm overflow-y-auto">
+            {activeView === "painel" && <PainelView />}
+            {activeView === "anuncios" && <AnunciosView />}
+            {activeView === "campanhas" && <CampanhasView />}
+            {activeView === "relatorios" && <RelatoriosView />}
           </div>
         )}
-
-        {/* Full-page views */}
-        {activeView === "kanban" && <KanbanView />}
-        {activeView === "agentes" && <AgentesView />}
-        {activeView === "skills" && <SkillsView />}
-        {activeView === "tarefas" && <TarefasView />}
-
-        {/* Chat panel - slides in when chat is active */}
-        {activeView === "chat" && <Sidebar />}
       </div>
     </div>
   );
