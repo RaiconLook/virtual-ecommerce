@@ -334,7 +334,7 @@ function Character({ id, order }: { id: AgentRole; order: number }) {
       <group scale={CHAR_SCALE}>
         <primitive object={charScene} />
       </group>
-      <Html position={[0, 2, 0]} center distanceFactor={10} style={{ pointerEvents: "none" }}>
+      <Html position={[0, 2, 0]} center distanceFactor={10} zIndexRange={[1, 0]} style={{ pointerEvents: "none" }}>
         <div className="flex flex-col items-center gap-0.5">
           <div className="px-2.5 py-0.5 rounded-md text-[9px] font-semibold tracking-wide flex items-center gap-1.5 backdrop-blur-md border shadow-lg"
             style={{ backgroundColor: "#0A0A0Add", borderColor: "#FF4D0040", color: "#F4F4F0" }}>
