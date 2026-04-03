@@ -7,10 +7,10 @@ import type { AgentRole, ChatMessage } from "@/types";
 import { runMeeting } from "@/lib/meeting";
 
 const AGENT_META: Record<string, { color: string }> = {
-  ceo: { color: "#6366f1" },
-  ads: { color: "#f59e0b" },
-  comercial: { color: "#3b82f6" },
-  imagen: { color: "#10b981" },
+  ceo: { color: "#ffe600" },
+  ads: { color: "#3483fa" },
+  comercial: { color: "#00a650" },
+  calls: { color: "#e040fb" },
   user: { color: "#5C5C5C" },
 };
 

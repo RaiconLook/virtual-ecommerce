@@ -26,12 +26,12 @@ const PI = Math.PI;
 // ═══════════════════════════════════════════════════
 
 export const ROOMS: RoomConfig[] = [
-  { id: "ceo", name: "Diretoria CEO", type: "office", center: [-7.5, 0, -4.75], size: [9, 6.5], color: "#6366f1", agentId: "ceo" },
-  { id: "ads", name: "Sala Ads", type: "office", center: [0.5, 0, -4.75], size: [7, 6.5], color: "#f59e0b", agentId: "ads" },
-  { id: "meeting", name: "Sala de Reuniao", type: "meeting", center: [8, 0, -4.75], size: [8, 6.5], color: "#8b5cf6" },
-  { id: "corridor", name: "Corredor", type: "lounge", center: [0, 0, 0], size: [24, 3], color: "#94a3b8" },
-  { id: "comercial", name: "Sala Comercial", type: "office", center: [-7.5, 0, 4.75], size: [9, 6.5], color: "#3b82f6", agentId: "comercial" },
-  { id: "imagen", name: "Sala de Imagen", type: "office", center: [0.5, 0, 4.75], size: [7, 6.5], color: "#10b981", agentId: "imagen" },
+  { id: "ceo", name: "Central de Operações", type: "office", center: [-7.5, 0, -4.75], size: [9, 6.5], color: "#ffe600", agentId: "ceo" },
+  { id: "ads", name: "Sala de Anúncios", type: "office", center: [0.5, 0, -4.75], size: [7, 6.5], color: "#3483fa", agentId: "ads" },
+  { id: "meeting", name: "Sala de Estratégia", type: "meeting", center: [8, 0, -4.75], size: [8, 6.5], color: "#8b5cf6" },
+  { id: "corridor", name: "Hub Central", type: "lounge", center: [0, 0, 0], size: [24, 3], color: "#94a3b8" },
+  { id: "comercial", name: "Sala de Análise", type: "office", center: [-7.5, 0, 4.75], size: [9, 6.5], color: "#00a650", agentId: "comercial" },
+  { id: "calls", name: "Estúdio Criativo", type: "office", center: [0.5, 0, 4.75], size: [7, 6.5], color: "#e040fb", agentId: "calls" },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -40,28 +40,28 @@ export const ROOMS: RoomConfig[] = [
 
 export const AGENTS: Record<AgentRole, AgentConfig> = {
   ceo: {
-    id: "ceo", name: "CEO", title: "Orquestrador Estrategico", color: "#6366f1",
+    id: "ceo", name: "GESTOR ML", title: "Orquestrador de Operações Marketplace", color: "#ffe600",
     homePosition: [-4, 0, 9.2],
     meetingPosition: [-7.8, 0, 8.5],
-    skills: ["Consolidacao Executiva", "Decisao Cross-Funil", "Priorizacao de Receita", "Analise Cruzada", "Direcionamento Estrategico", "Growth Leadership", "Review Semanal"],
+    skills: ["Visão Geral da Conta", "Health Score & Reputação", "Decisão de Catálogo", "Análise de Rentabilidade", "Estratégia de Growth", "Gestão de Fulfillment", "Relatório Executivo Diário"],
   },
   ads: {
-    id: "ads", name: "ADS", title: "Analista de Midia Paga", color: "#f59e0b",
+    id: "ads", name: "ANÚNCIOS", title: "Especialista em Listagens & SEO ML", color: "#3483fa",
     homePosition: [-4.11, 0, 5.4],
     meetingPosition: [-7, 0, 9],
-    skills: ["Meta Ads", "Google Ads", "CPL / CPA / CAC", "Ranking de Campanhas", "Analise de Criativos", "Eficiencia por Canal", "Alertas de Desperdicio", "Otimizacao de Budget"],
+    skills: ["Criação de Anúncios", "SEO Mercado Livre", "Otimização de Títulos", "Ficha Técnica Completa", "Catálogo Oficial", "Variações & Kits", "Análise de Concorrência", "Qualidade do Anúncio"],
   },
   comercial: {
-    id: "comercial", name: "COMERCIAL", title: "Analista de Pipeline & CRM", color: "#3b82f6",
+    id: "comercial", name: "ANALISTA", title: "Analista de Produtos & Mercado", color: "#00a650",
     homePosition: [-7.45, 0, 5.2],
     meetingPosition: [-8.5, 0, 9],
-    skills: ["Pipeline Analysis", "CRM / Funil Comercial", "Taxa de Conversao", "Custo por Oportunidade", "Custo por Venda", "Gargalos Mkt→Vendas", "Revenue por Origem", "Alinhamento Comercial"],
+    skills: ["Pesquisa de Tendências", "Análise de Concorrência", "Monitoramento Buy Box", "Precificação Dinâmica", "Margem por SKU", "Demanda por Categoria", "Produtos em Alta", "Oportunidades de Nicho"],
   },
-  imagen: {
-    id: "imagen", name: "IMAGEN", title: "Analista de Imagem & Criativos", color: "#10b981",
+  calls: {
+    id: "calls", name: "CRIATIVO", title: "Criação de Imagens & Visual", color: "#e040fb",
     homePosition: [-1, 0, 2.8],
     meetingPosition: [-7, 0, 8],
-    skills: ["Geracao de Imagens", "Criativos para Ads", "Branding Visual", "Design de Posts", "Thumbnails", "Banners & CTAs", "Identidade Visual", "A/B de Criativos"],
+    skills: ["Fotos de Produto (IA)", "Banners Promocionais", "Imagens para Anúncios", "Infográficos de Ficha Técnica", "Remoção de Fundo", "Mockups de Produto", "Vídeos Curtos", "Identidade Visual de Loja"],
   },
 };
 
@@ -107,11 +107,11 @@ export const INTERIOR_WALLS: WallSegment[] = [
 // ═══════════════════════════════════════════════════
 
 export const DOORS: DoorConfig[] = [
-  { position: [-7.5, 0, -1.5], rotation: 0, accentColor: "#6366f1", label: "CEO" },
-  { position: [0.5, 0, -1.5], rotation: 0, accentColor: "#f59e0b", label: "GOOGLE" },
-  { position: [-7.5, 0, 1.5], rotation: PI, accentColor: "#3b82f6", label: "META" },
-  { position: [0.5, 0, 1.5], rotation: PI, accentColor: "#f472b6", label: "COPY" },
-  { position: [8, 0, 1.5], rotation: PI, accentColor: "#10b981", label: "ANALYTICS" },
+  { position: [-7.5, 0, -1.5], rotation: 0, accentColor: "#ffe600", label: "GESTOR" },
+  { position: [0.5, 0, -1.5], rotation: 0, accentColor: "#3483fa", label: "ANÚNCIOS" },
+  { position: [-7.5, 0, 1.5], rotation: PI, accentColor: "#00a650", label: "ANALISTA" },
+  { position: [0.5, 0, 1.5], rotation: PI, accentColor: "#e040fb", label: "CRIATIVO" },
+  { position: [8, 0, 1.5], rotation: PI, accentColor: "#8b5cf6", label: "ESTRATÉGIA" },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -136,19 +136,19 @@ export const WINDOWS: WindowConfig[] = [
 // ═══════════════════════════════════════════════════
 
 export const OUTER_NEONS: NeonConfig[] = [
-  { position: [0, 0.015, -7.94], size: [24, 0.02, 0.008], color: "#6366f1" },
-  { position: [0, 0.015, 7.94], size: [24, 0.02, 0.008], color: "#3b82f6" },
-  { position: [-11.94, 0.015, 0], size: [0.008, 0.02, 16], color: "#10b981" },
-  { position: [11.94, 0.015, 0], size: [0.008, 0.02, 16], color: "#8b5cf6" },
+  { position: [0, 0.015, -7.94], size: [24, 0.02, 0.008], color: "#ffe600" },
+  { position: [0, 0.015, 7.94], size: [24, 0.02, 0.008], color: "#e040fb" },
+  { position: [-11.94, 0.015, 0], size: [0.008, 0.02, 16], color: "#00a650" },
+  { position: [11.94, 0.015, 0], size: [0.008, 0.02, 16], color: "#3483fa" },
 ];
 
 export const INNER_NEONS: NeonConfig[] = [
-  { position: [-7.5, H + 0.005, -1.5], size: [9, 0.01, 0.03], color: "#6366f1" },
-  { position: [0.5, H + 0.005, -1.5], size: [7, 0.01, 0.03], color: "#f59e0b" },
+  { position: [-7.5, H + 0.005, -1.5], size: [9, 0.01, 0.03], color: "#ffe600" },
+  { position: [0.5, H + 0.005, -1.5], size: [7, 0.01, 0.03], color: "#3483fa" },
   { position: [8, H + 0.005, -1.5], size: [8, 0.01, 0.03], color: "#8b5cf6" },
-  { position: [-7.5, H + 0.005, 1.5], size: [9, 0.01, 0.03], color: "#3b82f6" },
-  { position: [0.5, H + 0.005, 1.5], size: [7, 0.01, 0.03], color: "#f472b6" },
-  { position: [8, H + 0.005, 1.5], size: [8, 0.01, 0.03], color: "#10b981" },
+  { position: [-7.5, H + 0.005, 1.5], size: [9, 0.01, 0.03], color: "#00a650" },
+  { position: [0.5, H + 0.005, 1.5], size: [7, 0.01, 0.03], color: "#e040fb" },
+  { position: [8, H + 0.005, 1.5], size: [8, 0.01, 0.03], color: "#8b5cf6" },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -159,18 +159,18 @@ export const INNER_NEONS: NeonConfig[] = [
 
 export const ROOM_FURNITURE: Record<string, FurnitureItem[]> = {
   ceo: [
-    { type: "desk", position: [-9, 0, -6], props: { accentColor: "#6366f1" } },
-    { type: "chair", position: [-9, 0, -4.8], props: { color: "#6366f1" } },
-    { type: "deskLamp", position: [-10.2, 0, -6], props: { color: "#6366f1" } },
+    { type: "desk", position: [-9, 0, -6], props: { accentColor: "#ffe600" } },
+    { type: "chair", position: [-9, 0, -4.8], props: { color: "#ffe600" } },
+    { type: "deskLamp", position: [-10.2, 0, -6], props: { color: "#ffe600" } },
     { type: "bookshelf", position: [-11.5, 0, -5] },
     { type: "plant", position: [-5, 0, -7], props: { scale: 1.2 } },
     { type: "trashBin", position: [-5, 0, -2.5] },
   ],
 
   ads: [
-    { type: "desk", position: [0.5, 0, -6], props: { accentColor: "#f59e0b" } },
-    { type: "chair", position: [0.5, 0, -4.8], props: { color: "#f59e0b" } },
-    { type: "deskLamp", position: [1.7, 0, -6], props: { color: "#f59e0b" } },
+    { type: "desk", position: [0.5, 0, -6], props: { accentColor: "#3483fa" } },
+    { type: "chair", position: [0.5, 0, -4.8], props: { color: "#3483fa" } },
+    { type: "deskLamp", position: [1.7, 0, -6], props: { color: "#3483fa" } },
     { type: "bookshelf", position: [3.5, 0, -5] },
     { type: "plant", position: [-2, 0, -7] },
     { type: "trashBin", position: [3, 0, -2.5] },
@@ -178,11 +178,11 @@ export const ROOM_FURNITURE: Record<string, FurnitureItem[]> = {
 
   meeting: [
     { type: "meetingTable", position: [8, 0, -4.5] },
-    { type: "chair", position: [6.5, 0, -5.5], props: { color: "#6366f1" } },
-    { type: "chair", position: [9.5, 0, -5.5], props: { color: "#3b82f6" } },
-    { type: "chair", position: [6.5, 0, -3.5], props: { color: "#f59e0b" } },
-    { type: "chair", position: [9.5, 0, -3.5], props: { color: "#f472b6" } },
-    { type: "chair", position: [8, 0, -2.8], props: { color: "#10b981" } },
+    { type: "chair", position: [6.5, 0, -5.5], props: { color: "#ffe600" } },
+    { type: "chair", position: [9.5, 0, -5.5], props: { color: "#3483fa" } },
+    { type: "chair", position: [6.5, 0, -3.5], props: { color: "#00a650" } },
+    { type: "chair", position: [9.5, 0, -3.5], props: { color: "#e040fb" } },
+    { type: "chair", position: [8, 0, -2.8], props: { color: "#8b5cf6" } },
     { type: "whiteboard", position: [8, 0, -7.6] },
     { type: "plant", position: [5, 0, -7], props: { scale: 1.3 } },
     { type: "plant", position: [11, 0, -7], props: { scale: 1.1 } },
@@ -199,18 +199,18 @@ export const ROOM_FURNITURE: Record<string, FurnitureItem[]> = {
   ],
 
   comercial: [
-    { type: "desk", position: [-9, 0, 6], props: { accentColor: "#3b82f6", rotation: PI } },
-    { type: "chair", position: [-9, 0, 4.8], props: { color: "#3b82f6" } },
-    { type: "deskLamp", position: [-10.2, 0, 6], props: { color: "#3b82f6" } },
+    { type: "desk", position: [-9, 0, 6], props: { accentColor: "#00a650", rotation: PI } },
+    { type: "chair", position: [-9, 0, 4.8], props: { color: "#00a650" } },
+    { type: "deskLamp", position: [-10.2, 0, 6], props: { color: "#00a650" } },
     { type: "bookshelf", position: [-11.5, 0, 5] },
     { type: "plant", position: [-5, 0, 7], props: { scale: 1.1 } },
     { type: "trashBin", position: [-5, 0, 2.5] },
   ],
 
-  imagen: [
-    { type: "desk", position: [0.5, 0, 6], props: { accentColor: "#f472b6", rotation: PI } },
-    { type: "chair", position: [0.5, 0, 4.8], props: { color: "#f472b6" } },
-    { type: "deskLamp", position: [1.7, 0, 6], props: { color: "#f472b6" } },
+  calls: [
+    { type: "desk", position: [0.5, 0, 6], props: { accentColor: "#e040fb", rotation: PI } },
+    { type: "chair", position: [0.5, 0, 4.8], props: { color: "#e040fb" } },
+    { type: "deskLamp", position: [1.7, 0, 6], props: { color: "#e040fb" } },
     { type: "bookshelf", position: [3.5, 0, 5] },
     { type: "plant", position: [-2, 0, 7], props: { scale: 1.2 } },
     { type: "trashBin", position: [3, 0, 2.5] },
