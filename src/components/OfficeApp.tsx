@@ -37,7 +37,7 @@ export function OfficeApp() {
         </div>
 
         {showOverlay && (
-          <div className="absolute inset-0 z-20 bg-[#F4F4F0]/95 backdrop-blur-sm overflow-y-auto">
+          <div className="absolute inset-0 z-20 glass overflow-y-auto">
             {activeView === "painel" && <PainelView />}
             {activeView === "anuncios" && <AnunciosView />}
             {activeView === "campanhas" && <CampanhasView />}
