@@ -31,7 +31,7 @@ export const ROOMS: RoomConfig[] = [
   { id: "meeting", name: "Sala de Estratégia", type: "meeting", center: [8, 0, -4.75], size: [8, 6.5], color: "#8b5cf6" },
   { id: "corridor", name: "Hub Central", type: "lounge", center: [0, 0, 0], size: [24, 3], color: "#94a3b8" },
   { id: "comercial", name: "Sala de Análise", type: "office", center: [-7.5, 0, 4.75], size: [9, 6.5], color: "#00a650", agentId: "comercial" },
-  { id: "calls", name: "Estúdio Criativo", type: "office", center: [0.5, 0, 4.75], size: [7, 6.5], color: "#e040fb", agentId: "calls" },
+  { id: "imagen", name: "Estúdio Criativo", type: "office", center: [0.5, 0, 4.75], size: [7, 6.5], color: "#e040fb", agentId: "imagen" },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -57,8 +57,8 @@ export const AGENTS: Record<AgentRole, AgentConfig> = {
     meetingPosition: [-8.5, 0, 9],
     skills: ["Pesquisa de Tendências", "Análise de Concorrência", "Monitoramento Buy Box", "Precificação Dinâmica", "Margem por SKU", "Demanda por Categoria", "Produtos em Alta", "Oportunidades de Nicho"],
   },
-  calls: {
-    id: "calls", name: "CRIATIVO", title: "Criação de Imagens & Visual", color: "#e040fb",
+  imagen: {
+    id: "imagen", name: "CRIATIVO", title: "Criação de Imagens & Visual", color: "#e040fb",
     homePosition: [-1, 0, 2.8],
     meetingPosition: [-7, 0, 8],
     skills: ["Fotos de Produto (IA)", "Banners Promocionais", "Imagens para Anúncios", "Infográficos de Ficha Técnica", "Remoção de Fundo", "Mockups de Produto", "Vídeos Curtos", "Identidade Visual de Loja"],
@@ -207,7 +207,7 @@ export const ROOM_FURNITURE: Record<string, FurnitureItem[]> = {
     { type: "trashBin", position: [-5, 0, 2.5] },
   ],
 
-  calls: [
+  imagen: [
     { type: "desk", position: [0.5, 0, 6], props: { accentColor: "#e040fb", rotation: PI } },
     { type: "chair", position: [0.5, 0, 4.8], props: { color: "#e040fb" } },
     { type: "deskLamp", position: [1.7, 0, 6], props: { color: "#e040fb" } },

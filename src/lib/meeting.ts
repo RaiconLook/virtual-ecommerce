@@ -40,7 +40,7 @@ export async function runMeeting(topic: string) {
     if (remaining <= 0) clearInterval(timerInterval);
   }, 1000);
 
-  const agents: AgentRole[] = ["ceo", "ads", "comercial", "calls"];
+  const agents: AgentRole[] = ["ceo", "ads", "comercial", "imagen"];
 
   // Phase 1: CEO receives briefing
   status("ceo", "busy");
@@ -151,12 +151,12 @@ function generateDialogue(topic: string) {
       delay: 5500,
     },
     {
-      who: "calls" as AgentRole,
+      who: "imagen" as AgentRole,
       text: "Vou preparar o <strong>material visual</strong> de cada produto: foto principal com fundo branco profissional, infográficos de ficha técnica, banners de promoção e mockups de uso do produto.",
       delay: 5000,
     },
     {
-      who: "calls" as AgentRole,
+      who: "imagen" as AgentRole,
       text: "Também gero <strong>imagens por IA</strong> para produtos que não têm foto boa. Remoção de fundo, ambientação, comparativos visuais. O ML prioriza anúncios com imagens de alta qualidade no ranking.",
       delay: 5500,
     },
@@ -176,7 +176,7 @@ function generateDialogue(topic: string) {
       delay: 4500,
     },
     {
-      who: "calls" as AgentRole,
+      who: "imagen" as AgentRole,
       text: "Kit visual em <strong>48h</strong>: fotos otimizadas, infográficos de ficha técnica e banners para os top 10 produtos prioritários.",
       delay: 4500,
     },

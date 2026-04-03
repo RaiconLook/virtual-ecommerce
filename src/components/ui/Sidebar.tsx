@@ -10,7 +10,7 @@ const AGENT_META: Record<string, { color: string }> = {
   ceo: { color: "#ffe600" },
   ads: { color: "#3483fa" },
   comercial: { color: "#00a650" },
-  calls: { color: "#e040fb" },
+  imagen: { color: "#e040fb" },
   user: { color: "#5C5C5C" },
 };
 
