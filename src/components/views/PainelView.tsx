@@ -81,7 +81,7 @@ export function PainelView() {
         <div className="px-6 py-4 border-b border-[#5C5C5C]/8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#3483FA]" />
-            <h2 className="font-display font-semibold text-sm">Títulos que Mais Vendem (Concorrentes)</h2>
+            <h2 className="font-display font-bold text-base text-[#0A0A0A]">Títulos que Mais Vendem (Concorrentes)</h2>
           </div>
           <span className="font-mono text-[10px] text-[#5C5C5C] uppercase tracking-widest">Top 5 por categoria</span>
         </div>
@@ -123,7 +123,7 @@ export function PainelView() {
         <div className="px-6 py-4 border-b border-[#5C5C5C]/8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00A650] animate-pulse" />
-            <h2 className="font-display font-semibold text-sm">Tempo de Resposta — Perguntas</h2>
+            <h2 className="font-display font-bold text-base text-[#0A0A0A]">Tempo de Resposta — Perguntas</h2>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#00A650]/10 text-[#00A650]">Meta: &lt;10 min</span>
@@ -179,7 +179,7 @@ export function PainelView() {
         <div className="px-6 py-4 border-b border-[#5C5C5C]/8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#FF4D00]" />
-            <h2 className="font-display font-semibold text-sm">Probabilidade de Escala</h2>
+            <h2 className="font-display font-bold text-base text-[#0A0A0A]">Probabilidade de Escala</h2>
           </div>
           <span className="font-mono text-[10px] text-[#5C5C5C] uppercase tracking-widest">Base: vendas concorrentes 7d</span>
         </div>
@@ -234,7 +234,7 @@ export function PainelView() {
         <div className="px-6 py-4 border-b border-[#5C5C5C]/8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00A650] animate-pulse" />
-            <h2 className="font-display font-semibold text-sm">Ações dos Agentes</h2>
+            <h2 className="font-display font-bold text-base text-[#0A0A0A]">Ações dos Agentes</h2>
           </div>
           <span className="font-mono text-[10px] text-[#5C5C5C] uppercase tracking-widest">Últimos 30 min</span>
         </div>
