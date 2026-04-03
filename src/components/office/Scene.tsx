@@ -82,7 +82,7 @@ const AGENT_CHARS: Record<AgentRole, {
   ceo:       { appearance: "/characters/char17.glb", animPath: "/animations/char17" },
   ads:       { appearance: "/characters/char18.glb", animPath: "/animations/char18" },
   comercial: { appearance: "/characters/char10.glb", animPath: "/animations/char10" },
-  calls:     { appearance: "/characters/char15.glb", animPath: "/animations/char15" },
+  imagen:     { appearance: "/characters/char15.glb", animPath: "/animations/char15" },
 };
 
 const STATUS_COLORS: Record<AgentStatus, string> = {
@@ -94,14 +94,14 @@ const DESK_FACING: Record<AgentRole, number> = {
   ceo: 2.82,
   ads: -2.91,
   comercial: 2.90,
-  calls: 2.82,
+  imagen: 2.82,
 };
 
 const MEETING_FACING: Record<AgentRole, number> = {
   ceo: -1.74,
   ads: -3.00,
   comercial: 0.66,
-  calls: -0.14,
+  imagen: -0.14,
 };
 
 const ENTRY: [number, number, number] = [-2.74, 0, -0.5];
