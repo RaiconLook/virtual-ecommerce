@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const { to, subject, html } = await request.json();
 
-    const RESEND_KEY = process.env.RESEND_API_KEY;
+    const RESEND_KEY = process.env.RESENDAPIKEY;
     if (!RESEND_KEY) {
       return NextResponse.json({ error: "RESEND_API_KEY não configurada" }, { status: 500 });
     }
