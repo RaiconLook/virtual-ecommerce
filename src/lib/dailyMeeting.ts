@@ -100,7 +100,7 @@ export async function sendReportEmail(report: DailyMeetingReport) {
     </div>
   `;
 
-  // Tenta enviar via /api/send-report (endpoint Next.js)
+  // Envia e-mail via Resend
   try {
     await fetch("/api/send-report", {
       method: "POST",
@@ -113,6 +113,30 @@ export async function sendReportEmail(report: DailyMeetingReport) {
     });
   } catch (e) {
     console.error("Erro enviando e-mail:", e);
+  }
+}
+
+// ═══ Envio via WhatsApp (grupo WeStack Leads) ═══
+
+export async function sendReportWhatsApp(report: DailyMeetingReport) {
+  const metricsText = report.metrics.map(m => `${m.label}: ${m.value} (${m.change})`).join("\n");
+  const insightsText = report.insights.map(i => `• ${i}`).join("\n");
+  const dialogText = report.messages.slice(0, 5).map(m => `[${m.agent}] ${m.text.replace(/<[^>]*>/g, "")}`).join("\n");
+
+  const message = `*🤖 Reunião ${report.type === "automatica" ? "Diária" : "de Alinhamento"} — ${report.date}*\n\n` +
+    `*📊 Métricas do Dia*\n${metricsText || "Sem métricas"}\n\n` +
+    `*💡 Insights*\n${insightsText}\n\n` +
+    `*💬 Destaques da Reunião*\n${dialogText}\n\n` +
+    `_WeStack — Escritório Virtual ML_`;
+
+  try {
+    await fetch("/api/send-whatsapp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+  } catch (e) {
+    console.error("Erro enviando WhatsApp:", e);
   }
 }
 
@@ -141,33 +165,41 @@ export async function runDailyMeeting() {
     if (remaining <= 0) clearInterval(timerInterval);
   }, 1000);
 
-  // Fase 1: Gestor convoca
+  // Fase 1: Gestor convoca (~10s)
   status("ceo", "busy");
-  await sleep(800);
+  await sleep(1500);
   msg("ceo", "━━━ REUNIÃO DIÁRIA — 20h ━━━", "meeting");
-  await sleep(500);
+  await sleep(1000);
   addMsg("ceo", `Boa noite, equipe. Vamos consolidar os números do dia ${dateStr}. Cada um me traz o balanço da sua área.`);
 
-  // Move todos para reunião
+  // Move todos para reunião (~8s)
   for (const id of agents) {
     moveToMeeting(id);
     status(id, "meeting");
-    await sleep(800);
+    await sleep(2000);
   }
   await sleep(2000);
 
-  // Fase 2: Cada agente reporta
-  await sleep(1500);
-  addMsg("ads", "Hoje auditei <strong>18 anúncios ativos</strong>. 12 estão saudáveis, 4 otimizáveis e 2 críticos. Reescrevi 3 títulos — score SEO médio subiu de 72 para 86. Criei 2 anúncios novos para SKUs que o Analista identificou.");
+  // Fase 2: Cada agente reporta (~40s)
+  await sleep(3000);
+  addMsg("ads", "Hoje auditei <strong>18 anúncios ativos</strong>. 12 estão saudáveis, 4 otimizáveis e 2 críticos. Reescrevi 3 títulos — score SEO médio subiu de 72 para 86.");
+  await sleep(3000);
+  addMsg("ads", "Criei 2 anúncios novos para SKUs que o Analista identificou. Fichas técnicas completas e palavras-chave de alta busca.");
 
-  await sleep(2000);
-  addMsg("comercial", "Monitorei <strong>24 concorrentes diretos</strong> hoje. 3 baixaram preço — já recalculei margens e passei pro Anúncios ajustar. Identifiquei 2 produtos em alta na categoria que não temos ainda. Buy Box: mantivemos em 78% dos SKUs.");
+  await sleep(3500);
+  addMsg("comercial", "Monitorei <strong>24 concorrentes diretos</strong> hoje. 3 baixaram preço — já recalculei margens e passei pro Anúncios ajustar.");
+  await sleep(3000);
+  addMsg("comercial", "Identifiquei 2 produtos em alta na categoria que não temos ainda. Buy Box: mantivemos em <strong>78%</strong> dos SKUs.");
 
-  await sleep(2000);
-  addMsg("calls", "Gerei <strong>15 imagens profissionais</strong> via Nano Banana Pro. 10 para anúncios novos e 5 substituições de fotos ruins. Todos no padrão 1200x1200 com fundo branco. Kit de infográficos pronto para os 3 top sellers.");
+  await sleep(3500);
+  addMsg("calls", "Gerei <strong>15 imagens profissionais</strong> via Nano Banana Pro. 10 para anúncios novos e 5 substituições de fotos ruins.");
+  await sleep(3000);
+  addMsg("calls", "Todos no padrão 1200x1200 com fundo branco. Kit de infográficos pronto para os 3 top sellers.");
 
-  await sleep(2000);
-  addMsg("ceo", "Do meu lado: aprovei <strong>7 anúncios</strong> hoje, reprovei 1 por margem abaixo de 15%. Margem média do dia: <strong>28%</strong>. Health score da conta: verde. ADS: 5 campanhas ativas com ACoS médio de 12%. Pausei 1 campanha com ACoS de 31%.");
+  await sleep(3500);
+  addMsg("ceo", "Do meu lado: aprovei <strong>7 anúncios</strong> hoje, reprovei 1 por margem abaixo de 15%. Margem média do dia: <strong>28%</strong>.");
+  await sleep(3000);
+  addMsg("ceo", "Health score da conta: verde. ADS: 5 campanhas ativas com ACoS médio de 12%. Pausei 1 campanha com ACoS de 31%.");
 
   // Fase 3: Insights
   await sleep(2000);
@@ -215,18 +247,19 @@ export async function runDailyMeeting() {
 
   saveMeetingReport(report);
 
-  // Envia por e-mail
+  // Envia por e-mail + WhatsApp
   await sendReportEmail(report);
+  await sendReportWhatsApp(report);
 
   // Volta todos pra casa
   clearInterval(timerInterval);
   useOfficeStore.getState().setMeetingTimer(0);
 
-  await sleep(1000);
+  await sleep(1500);
   for (const id of agents) {
     moveHome(id);
     status(id, "online");
-    await sleep(800);
+    await sleep(1000);
   }
 
   store.setMeeting(false);
@@ -300,15 +333,16 @@ export async function runAlignmentMeeting(topic: string) {
 
   saveMeetingReport(report);
   await sendReportEmail(report);
+  await sendReportWhatsApp(report);
 
   clearInterval(timerInterval);
   useOfficeStore.getState().setMeetingTimer(0);
 
-  await sleep(1000);
+  await sleep(1500);
   for (const id of agents) {
     moveHome(id);
     status(id, "online");
-    await sleep(800);
+    await sleep(1000);
   }
 
   store.setMeeting(false);

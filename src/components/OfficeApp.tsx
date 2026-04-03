@@ -10,6 +10,7 @@ import { CampanhasView } from "./views/CampanhasView";
 import { PerguntasView } from "./views/PerguntasView";
 import { ReunioesView } from "./views/ReunioesView";
 import { RelatoriosView } from "./views/RelatoriosView";
+import { MeetingChat } from "./ui/MeetingChat";
 import { useDailyMeetingScheduler } from "@/lib/dailyMeeting";
 
 const OfficeCanvas = dynamic(
@@ -46,6 +47,9 @@ export function OfficeApp() {
             {activeView === "relatorios" && <RelatoriosView />}
           </div>
         )}
+
+        {/* Meeting Chat — abre automaticamente durante reuniões */}
+        <MeetingChat />
       </div>
     </div>
   );
