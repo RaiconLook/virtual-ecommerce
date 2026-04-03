@@ -7,6 +7,7 @@ import { LeftSidebar, type AppView } from "./ui/LeftSidebar";
 import { PainelView } from "./views/PainelView";
 import { AnunciosView } from "./views/AnunciosView";
 import { CampanhasView } from "./views/CampanhasView";
+import { PerguntasView } from "./views/PerguntasView";
 import { ReunioesView } from "./views/ReunioesView";
 import { RelatoriosView } from "./views/RelatoriosView";
 import { useDailyMeetingScheduler } from "@/lib/dailyMeeting";
@@ -40,6 +41,7 @@ export function OfficeApp() {
             {activeView === "painel" && <PainelView />}
             {activeView === "anuncios" && <AnunciosView />}
             {activeView === "campanhas" && <CampanhasView />}
+            {activeView === "perguntas" && <PerguntasView />}
             {activeView === "reunioes" && <ReunioesView />}
             {activeView === "relatorios" && <RelatoriosView />}
           </div>
